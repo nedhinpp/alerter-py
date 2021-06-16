@@ -26,7 +26,7 @@ class Command(BaseCommand):
         					txt = "*Vaccination center available* \n \n*"+ str(center['name']) +"*\n"+ str(center['address']) +"\nVaccine : *"+ str(session['vaccine'])+"*\nAge : *"+str(session['min_age_limit'])+" %2B * \nTotal *"+str(session['available_capacity'])+"* slots are available on *"+str(session['date'])+"*\n(Dose 1 : "+str(session['available_capacity_dose1'])+" , Dose 2 : "+str(session['available_capacity_dose2'])+") \n \nCoWin : https://selfregistration.cowin.gov.in"
         					response = requests.post("https://api.telegram.org/bot1860148922:AAHdt2gJdjl6kQT15lcxzbM-63ZJRTp4_Ps/sendMessage?chat_id="+ditrict_chat_ids[x]+"&text="+txt+"&parse_mode=Markdown")
         					print(response.json())
-        NotifyData.objects.filter(created_at__lte=(datetime.datetime.now() - datetime.timedelta(hours = 1)))
+        NotifyData.objects.filter(created_at__lte=(datetime.datetime.now() - datetime.timedelta(hours = 1))).delete()
 
 
 
